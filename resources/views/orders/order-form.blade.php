@@ -47,11 +47,12 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Customer Name</th>
-                            <th scope="col">Customer Pin</th>
-                            <th scope="col">Order Type</th>
-                            <th scope="col">Payment Method</th>
-                            <th scope="col">Total Qty</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">QTY</th>
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Total PV</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">SKU</th>
                             </tr>
                         </thead>
                         <tbody>
