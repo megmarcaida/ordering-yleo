@@ -255,6 +255,7 @@
         $("#payment_method").hide();
         $("#last_four_digit").hide();
         $("#queue_block").show();
+        return false;
     });
 
     $("#btn-back").on("click",function(){
