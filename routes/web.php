@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/pick-up-form', [OrdersController::class, 'pickUpForm'])->name('orders');
-Route::get('/order-form', [OrdersController::class, 'orderForm'])->name('orders');
+Route::get('/pick-up-form', [OrdersController::class, 'pickUpForm'])->name('pickUpForm');
+Route::get('/order-form', [OrdersController::class, 'orderForm'])->name('orderForm');
+Route::post('/order-form', [OrdersController::class, 'orderForm'])->name('orderForm');
+
+Route::get('/autocomplete', [ProductsController::class, 'autoComplete'])->name('autocomplete');
+Route::get('/get-product-by-name', [ProductsController::class, 'getProductByName'])->name('get-product-by-name');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

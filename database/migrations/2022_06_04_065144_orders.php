@@ -25,6 +25,7 @@ class Orders extends Migration
             $table->string('remarks')->nullable();
             $table->decimal('total_price')->nullable();
             $table->decimal('total_qty')->nullable();
+            $table->string('last_four_digit')->nullable();
             $table->integer('status')->nullable();
             $table->integer('enabled')->nullable();
             $table->timestamps();
