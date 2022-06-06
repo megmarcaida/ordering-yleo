@@ -266,6 +266,7 @@
         $("#last_four_digit").show();
         $("#queue_block").hide();
         $("#btn-complete").show();
+        return false;
     });
 
    
