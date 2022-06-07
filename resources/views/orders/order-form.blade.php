@@ -193,7 +193,7 @@
             var ret = data[0];
             var id = val.$element.attr('data-no');
             var qty = ret.product_qty;
-            var qty = ret.;
+            var with_limit_qty = ret.with_limit_qty;
             var product_id = ret.id;
             var price = ret.product_price;
             var pv = ret.pv;
@@ -204,7 +204,9 @@
 
             $("#product_id_"+id).val(product_id)
             $("#product_qty_"+id).val(1)
-            $("#product_qty_"+id).attr("max",qty)
+            if(with_limit_qty != "NO"){
+                $("#product_qty_"+id).attr("max",with_limit_qty)
+            }
             $("#product_qty_"+id).attr("min",1)
             $("#product_total_price_"+id).val(total_price)
             $("#product_total_pv_"+id).val(total_pv)
