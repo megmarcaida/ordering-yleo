@@ -63,66 +63,66 @@
                     <table class="table order_product">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">Item</th>
                             <th scope="col">Description</th>
                             <th scope="col">QTY</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Total PV</th>
+                            <th scope="col">PV</th>
                             <th scope="col">Unit Price</th>
                             <th scope="col">SKU</th>
-                            <th scope="col">PV</th>
+                            <th scope="col">Total Price</th>
+                            <th scope="col">Total PV</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td> <input id="product_id_1" class="typeahead form-control" name="product_id[]" type="hidden"> Item 1</td>
+                                <td> <input id="product_id_1" class="typeahead form-control" name="product_id[]" type="hidden"> 1</td>
                                 <td> <input id="product_name_1" data-no="1" class="typeahead form-control" name="product_name[]" type="text"></td>
                                 <td> <input id="product_qty_1" class="form-control" name="product_qty[]" type="number"></td>
-                                <td> <input id="product_total_price_1" class="form-control" name="product_total_price[]"  type="text" readonly></td>
-                                <td> <input id="product_total_pv_1" class="form-control" name="product_total_pv[]" type="text" readonly></td>
+                                <td> <input id="product_pv_1"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_1"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_1"class="form-control" type="text" name="product_sku[]" readonly></td>
-                                <td> <input id="product_pv_1"class="form-control" type="text" name="product_pv[]" readonly></td>
+                                <td> <input id="product_total_price_1" class="form-control" name="product_total_price[]"  type="text" readonly></td>
+                                <td> <input id="product_total_pv_1" class="form-control" name="product_total_pv[]" type="text" readonly></td>
                             </tr>
                             <tr>
-                                <td> <input id="product_id_2" class="typeahead form-control" name="product_id[]" type="hidden"> Item 2</td>
+                                <td> <input id="product_id_2" class="typeahead form-control" name="product_id[]" type="hidden"> 2</td>
                                 <td> <input id="product_name_2" data-no="2" class="typeahead form-control" name="product_name[]" type="text"></td>
                                 <td> <input id="product_qty_2" class="form-control" name="product_qty[]"  type="number"></td>
-                                <td> <input id="product_total_price_2" class="form-control" name="product_total_price[]" type="text" readonly></td>
-                                <td> <input id="product_total_pv_2" class="form-control" name="product_total_pv[]" type="text" readonly></td>
+                                <td> <input id="product_pv_2"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_2"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_2"class="form-control" type="text" name="product_sku[]" readonly></td>
-                                <td> <input id="product_pv_2"class="form-control" type="text" name="product_pv[]" readonly></td>
+                                <td> <input id="product_total_price_2" class="form-control" name="product_total_price[]" type="text" readonly></td>
+                                <td> <input id="product_total_pv_2" class="form-control" name="product_total_pv[]" type="text" readonly></td>
                             </tr>
                             <tr>
-                                <td> <input id="product_id_3" class="typeahead form-control" name="product_id[]" type="hidden"> Item 3</td>
+                                <td> <input id="product_id_3" class="typeahead form-control" name="product_id[]" type="hidden"> 3</td>
                                 <td> <input id="product_name_3" data-no="3" class="typeahead form-control" name="product_name[]" type="text"></td>
                                 <td> <input id="product_qty_3" class="form-control" name="product_qty[]"  type="number"></td>
-                                <td> <input id="product_total_price_3" class="form-control" name="product_total_price[]" type="text" readonly></td>
-                                <td> <input id="product_total_pv_3" class="form-control" type="text" name="product_total_pv[]" readonly></td>
+                                <td> <input id="product_pv_3"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_3"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_3"class="form-control" type="text" name="product_sku[]" readonly></td>
-                                <td> <input id="product_pv_3"class="form-control" type="text" name="product_pv[]" readonly></td>
+                                <td> <input id="product_total_price_3" class="form-control" name="product_total_price[]" type="text" readonly></td>
+                                <td> <input id="product_total_pv_3" class="form-control" type="text" name="product_total_pv[]" readonly></td>
                             </tr>
                             <tr>
-                                <td> <input id="product_id_4" class="typeahead form-control" name="product_id[]" type="hidden"> Item 4</td>
+                                <td> <input id="product_id_4" class="typeahead form-control" name="product_id[]" type="hidden"> 4</td>
                                 <td> <input id="product_name_4" data-no="4" class="typeahead form-control" name="product_name[]" type="text"></td>
                                 <td> <input id="product_qty_4" class="form-control" name="product_qty[]"  type="number"></td>
-                                <td> <input id="product_total_price_4" class="form-control" name="product_total_price[]" type="text" readonly></td>
-                                <td> <input id="product_total_pv_4" class="form-control" type="text" name="product_total_pv[]" readonly></td>
+                                <td> <input id="product_pv_4"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_4"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_4"class="form-control" type="text" name="product_sku[]" readonly></td>
-                                <td> <input id="product_pv_4"class="form-control" type="text" name="product_pv[]" readonly></td>
+                                <td> <input id="product_total_price_4" class="form-control" name="product_total_price[]" type="text" readonly></td>
+                                <td> <input id="product_total_pv_4" class="form-control" type="text" name="product_total_pv[]" readonly></td>
                             </tr>
                             <tr>
-                                <td> <input id="product_id_5" class="typeahead form-control" name="product_id[]" type="hidden"> Item 5</td>
+                                <td> <input id="product_id_5" class="typeahead form-control" name="product_id[]" type="hidden"> 5</td>
                                 <td> <input id="product_name_5" data-no="5" class="typeahead form-control" name="product_name[]" type="text"></td>
                                 <td> <input id="product_qty_5" class="form-control" name="product_qty[]"  type="number"></td>
-                                <td> <input id="product_total_price_5" class="form-control" name="product_total_price[]" type="text" readonly></td>
-                                <td> <input id="product_total_pv_5" class="form-control" type="text" name="product_total_pv[]" readonly></td>
+                                <td> <input id="product_pv_5"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_5"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_5"class="form-control" type="text" name="product_sku[]" readonly></td>
-                                <td> <input id="product_pv_5"class="form-control" type="text" name="product_pv[]" readonly></td>
+                                <td> <input id="product_total_price_5" class="form-control" name="product_total_price[]" type="text" readonly></td>
+                                <td> <input id="product_total_pv_5" class="form-control" type="text" name="product_total_pv[]" readonly></td>
                             </tr>
                         </tbody>
                     </table>
@@ -193,6 +193,7 @@
             var ret = data[0];
             var id = val.$element.attr('data-no');
             var qty = ret.product_qty;
+            var qty = ret.;
             var product_id = ret.id;
             var price = ret.product_price;
             var pv = ret.pv;
