@@ -11,28 +11,17 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="container">
                         <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                            @foreach($orders as $k => $v)
                             <div class="col">
                                 <div class="card h-100">
                                     <div class="card-body">
-                                        <h1 class="card-title text-primary">2222222</h1>
+                                        <h1 class="card-title text-primary">{{ $v->queue_number }}</h1>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body text-primary">
-                                        <h1 class="card-title">2321352</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body text-primary">
-                                        
-                                        <h1 class="card-title">5543242</h1>   
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                            
                         </div>
                     </div>
                 </div>

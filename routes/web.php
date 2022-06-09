@@ -26,9 +26,7 @@ Route::post('/order-form', [OrdersController::class, 'orderForm'])->name('orderF
 Route::get('/autocomplete', [ProductsController::class, 'autoComplete'])->name('autocomplete');
 Route::get('/get-product-by-name', [ProductsController::class, 'getProductByName'])->name('get-product-by-name');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [OrdersController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 Route::get('/orders', [OrdersController::class, 'index'])->middleware(['auth'])->name('orders');
 

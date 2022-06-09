@@ -18,7 +18,8 @@ class OrderDetails extends Migration
             $table->string('order_id')->nullable();
             $table->string('product_id')->nullable();
             $table->integer('qty_ordered')->nullable();
-            $table->decimal('price');
+            $table->decimal('price')->nullable();
+            $table->decimal('pv')->nullable();
             $table->timestamps();
         });
     }

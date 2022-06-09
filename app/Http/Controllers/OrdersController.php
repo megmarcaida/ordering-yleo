@@ -17,6 +17,14 @@ class OrdersController extends Controller
         return view('orders.admin.order', ['orders' => $orders]);
     }
 
+    public function dashboard(Request $request)
+    {
+        //dashboard
+        $orders = orders::where("enabled",1)->get();
+
+        return view('dashboard', ['orders' => $orders]);
+    }
+
     public function orderForm(Request $request)
     {
         $message = "";
@@ -31,6 +39,8 @@ class OrdersController extends Controller
             $order->payment_method      = $request->post('order_type') == "Points" ? "" : $request->post('payment_method');
             $order->last_four_digit     = $request->post('payment_method') == "card_on_file" ? $request->post('last_four_digit') : "";
             $order->queue_number        = $request->post('queue_number');
+            $order->total_pv            = $request->post('total_pv');
+            $order->total_price         = $request->post('total_price');
             $order->status              = 1;
             $order->enabled             = 1;
             $order->date                = Carbon::now();
@@ -44,7 +54,8 @@ class OrdersController extends Controller
                     $order_details->order_id = $order_id;
                     $order_details->product_id = $request->post('product_id')[$key];
                     $order_details->qty_ordered = $request->post('product_qty')[$key];
-                    $order_details->price = !empty($request->post('product_unit_price')[$key]) ? $request->post('product_unit_price')[$key] : 0;
+                    $order_details->price = !empty($request->post('product_unit_price')[$key]) ? $request->post('product_qty')[$key] * $request->post('product_unit_price')[$key] : 0;
+                    $order_details->pv = !empty($request->post('product_pv')[$key]) ? $request->post('product_qty')[$key] * $request->post('product_pv')[$key] : 0;
                     $order_details->save();
                 }
             }

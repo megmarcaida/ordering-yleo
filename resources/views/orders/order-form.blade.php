@@ -24,9 +24,11 @@
             
         </script>  
         @endif
-        <h2>Order Form</h2>
+        <h2>Order Form <a href="/" style="float:right;" class="btn btn-danger">BACK</a></h2>
+        <br>
         <div id="customer_info" class="row">
             
+        
             <div class="col">
                 <div class="mb-3">
                     <label for="member_id" class="form-label">Member ID</label>
@@ -52,8 +54,18 @@
                     <option value="Points">Points</option>
                     </select>
                 </div>
-                
-                
+            </div>
+
+            
+            <div class="col">
+                <div class="mb-3">
+                    <label for="member_pin" class="form-label">Total PV</label>
+                    <input id="total_pv" type="text" class="form-control" name="total_pv" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="member_pin" class="form-label">Total Price</label>
+                    <input id="total_price" type="text" class="form-control" name="total_price" readonly>
+                </div>
             </div>
         </div>
         <div id="table_data" class="row table-responsive">
@@ -77,7 +89,7 @@
                             <tr>
                                 <td> <input id="product_id_1" class="typeahead form-control" name="product_id[]" type="hidden"> 1</td>
                                 <td> <input id="product_name_1" data-no="1" class="typeahead form-control" name="product_name[]" type="text"></td>
-                                <td> <input id="product_qty_1" class="form-control" name="product_qty[]" type="number"></td>
+                                <td> <input id="product_qty_1" data-no="1" class="form-control calculate" name="product_qty[]" type="number"></td>
                                 <td> <input id="product_pv_1"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_1"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_1"class="form-control" type="text" name="product_sku[]" readonly></td>
@@ -87,7 +99,7 @@
                             <tr>
                                 <td> <input id="product_id_2" class="typeahead form-control" name="product_id[]" type="hidden"> 2</td>
                                 <td> <input id="product_name_2" data-no="2" class="typeahead form-control" name="product_name[]" type="text"></td>
-                                <td> <input id="product_qty_2" class="form-control" name="product_qty[]"  type="number"></td>
+                                <td> <input id="product_qty_2" data-no="2" class="form-control calculate" name="product_qty[]"  type="number"></td>
                                 <td> <input id="product_pv_2"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_2"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_2"class="form-control" type="text" name="product_sku[]" readonly></td>
@@ -97,7 +109,7 @@
                             <tr>
                                 <td> <input id="product_id_3" class="typeahead form-control" name="product_id[]" type="hidden"> 3</td>
                                 <td> <input id="product_name_3" data-no="3" class="typeahead form-control" name="product_name[]" type="text"></td>
-                                <td> <input id="product_qty_3" class="form-control" name="product_qty[]"  type="number"></td>
+                                <td> <input id="product_qty_3" data-no="3" class="form-control calculate" name="product_qty[]"  type="number"></td>
                                 <td> <input id="product_pv_3"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_3"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_3"class="form-control" type="text" name="product_sku[]" readonly></td>
@@ -107,7 +119,7 @@
                             <tr>
                                 <td> <input id="product_id_4" class="typeahead form-control" name="product_id[]" type="hidden"> 4</td>
                                 <td> <input id="product_name_4" data-no="4" class="typeahead form-control" name="product_name[]" type="text"></td>
-                                <td> <input id="product_qty_4" class="form-control" name="product_qty[]"  type="number"></td>
+                                <td> <input id="product_qty_4" data-no="4" class="form-control calculate" name="product_qty[]"  type="number"></td>
                                 <td> <input id="product_pv_4"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_4"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_4"class="form-control" type="text" name="product_sku[]" readonly></td>
@@ -117,7 +129,7 @@
                             <tr>
                                 <td> <input id="product_id_5" class="typeahead form-control" name="product_id[]" type="hidden"> 5</td>
                                 <td> <input id="product_name_5" data-no="5" class="typeahead form-control" name="product_name[]" type="text"></td>
-                                <td> <input id="product_qty_5" class="form-control" name="product_qty[]"  type="number"></td>
+                                <td> <input id="product_qty_5" data-no="5" class="form-control calculate" name="product_qty[]"  type="number"></td>
                                 <td> <input id="product_pv_5"class="form-control" type="text" name="product_pv[]" readonly></td>
                                 <td> <input id="product_unit_price_5"class="form-control" type="text" name="product_unit_price[]" readonly></td>
                                 <td> <input id="product_sku_5"class="form-control" type="text" name="product_sku[]" readonly></td>
@@ -173,7 +185,8 @@
     </form>
     <script type="text/javascript">
     var path = "{{ route('autocomplete') }}";
-    
+    var total_price = 0;
+    var total_pv = 0;
     $('input.typeahead').typeahead({
         source:  function (query, process) {
         return $.get(path, { query: query }, function (data) {
@@ -182,7 +195,10 @@
         },
         updater: function(item) {
             setProduct(item,this);
-           
+            setTimeout(function(){
+                calculateTotal()
+            },500)
+            
             return item;
         }
     });
@@ -198,8 +214,8 @@
             var price = ret.product_price;
             var pv = ret.pv;
             var sku = ret.product_sku;
-            var total_price = qty * price;
-            var total_pv = qty * pv
+            var total_price = 1 * price;
+            var total_pv = 1 * pv
 
 
             $("#product_id_"+id).val(product_id)
@@ -272,6 +288,37 @@
         $("#btn-complete").show();
         return false;
     });
+
+    
+    $(".calculate").on("change",function(){
+        var qty = $(this).val();
+        var id = $(this).attr("data-no")
+        var price = $("#product_unit_price_"+id).val();
+        var pv = $("#product_pv_"+id).val();
+
+        $("#product_total_price_"+id).val(qty*price)
+        $("#product_total_pv_"+id).val(qty*pv)
+
+        calculateTotal()
+
+    })
+
+    function calculateTotal(){
+        var totalPv = 0;
+        var totalPrice = 0;
+        for(var i = 1; i<= 5; i++){
+            console.log($("#product_total_pv_"+i).val())
+            if($("#product_total_pv_"+i).val() != ""){
+                totalPv += parseFloat($("#product_total_pv_"+i).val())
+            }
+
+            if($("#product_total_price_"+i).val() != ""){
+                totalPrice += parseFloat($("#product_total_price_"+i).val())
+            }
+        }
+        $("#total_pv").val(totalPv)
+        $("#total_price").val(totalPrice)
+    }
 
    
 </script>
