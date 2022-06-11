@@ -13,11 +13,23 @@
                         <div class="row row-cols-1 row-cols-md-3 g-4">
 
                             @foreach($orders as $k => $v)
-                            <a href="/complete-form/{{ $v->id }}">
+                            <a href="/complete-form/{{ $v->id }}" style="text-decoration:none">
                                 <div class="col">
                                     <div class="card h-100">
                                         <div class="card-body">
                                             <h1 class="card-title text-primary">{{ $v->queue_number }}</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            @endforeach
+
+                            @foreach($pickup_orders as $k => $v)
+                            <a href="/complete-pickup-form/{{ $v->id }}" style="text-decoration:none">
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h1 class="card-title text-warning">{{ $v->queue_number }}</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +44,6 @@
     </div>
     <script>
         setInterval(function(){
-            console.log('test')
             $('#refresh_div').load(location.href+(' #refresh_div'));
         },3000)
          

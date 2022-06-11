@@ -300,7 +300,7 @@
 
     $("#btn-complete").on("click",function(){
 
-        if($("#member_name").val() == "" || $("#member_pin").val() == "" || $("#member_id").val() == "" || $("#order_type").val() == ""){
+        if($("#member_name").val() == "" || $("#member_pin").val() == "" || $("#member_id").val() == "" || $("#order_type").val() == "" || $("#experience_center option:selected").val() == ""){
             alert("Please fill in the fields")
             return false;
         }
@@ -366,7 +366,6 @@
     var current_count = 5
     $("#btn-add-more").on("click",function(){
         var num_to_add = 5;
-        console.log('test')
         for(var i = 1; i <= num_to_add;i++){
             $("table.order_product tbody").append('<tr><td> <input id="product_id_'+(current_count+i)+'" class="typeahead form-control input" name="product_id[]" type="hidden">'+(current_count+i)+'</td><td> <input id="product_name_'+(current_count+i)+'" data-no="'+(current_count+i)+'" class="typeahead form-control input disabled" name="product_name[]" type="text"></td><td> <input id="product_qty_'+(current_count+i)+'" data-no="'+(current_count+i)+'" class="form-control input calculate disabled" name="product_qty[]"  type="number"></td><td> <input id="product_pv_'+(current_count+i)+'"class="form-control input" type="text" name="product_pv[]" readonly></td><td> <input id="product_unit_price_'+(current_count+i)+'"class="form-control input" type="text" name="product_unit_price[]" readonly></td><td> <input id="product_sku_'+(current_count+i)+'" class="form-control input" type="text" name="product_sku[]" readonly></td><td> <input id="product_total_price_'+(current_count+i)+'" class="form-control input" name="product_total_price[]" type="text" readonly></td><td> <input id="product_total_pv_'+(current_count+i)+'" class="form-control input" type="text" name="product_total_pv[]" readonly></td></tr>')
             initTypeahead();

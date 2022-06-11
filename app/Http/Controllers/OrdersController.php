@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\orders;
 use App\Models\products;
 use App\Models\order_details;
+use App\Models\pickup_orders;
+use App\Models\pickup_order_details;
 use Carbon\Carbon;
 
 class OrdersController extends Controller
@@ -13,17 +15,26 @@ class OrdersController extends Controller
     public function index(Request $request)
     {
         //dashboard
-        $orders = orders::where("enabled",1)->orderby('id','desc')->cursorPaginate(10);
+        $orders = orders::where("enabled",1)->orderBy('status','desc')->paginate(10);
 
         return view('orders.admin.order', ['orders' => $orders]);
+    }
+
+    public function indexPickUp(Request $request)
+    {
+        //dashboard
+        $orders = pickup_orders::where("enabled",1)->orderBy('status','desc')->paginate(10);
+
+        return view('orders.admin.pickup-order', ['orders' => $orders]);
     }
 
     public function dashboard(Request $request)
     {
         //dashboard
-        $orders = orders::where("status",1)->orderby('id','desc')->get();
+        $orders = orders::where("status",1)->get();
+        $pickup_orders = pickup_orders::where("status",1)->get();
 
-        return view('dashboard', ['orders' => $orders]);
+        return view('dashboard', ['orders' => $orders,'pickup_orders' => $pickup_orders]);
     }
 
     public function orderForm(Request $request)
@@ -98,6 +109,23 @@ class OrdersController extends Controller
         return view('orders.complete-form', ['orders' => $orders,"order_details" => $order_detailed]);
     }
 
+    public function completePickupForm($id)
+    {
+        //complete order
+        $pickup_orders = pickup_orders::where("enabled",1)->where('id',$id)->first();
+        
+        $pickup_order_details = pickup_order_details::where('pickup_order_id',$id)->get();
+
+        $pickup_order_detailed = array();
+        foreach($pickup_order_details as $k => $v){
+            $arr['order_id'] = $v['order_id'];
+            $arr['pin'] = $v['pin'];
+            array_push($pickup_order_detailed,$arr);
+        }
+
+        return view('orders.complete-pickup-form', ['pickup_orders' => $pickup_orders,"pickup_order_details" => $pickup_order_detailed]);
+    }
+
     public function updateStatus($id){
         $orders = orders::where("enabled",1)->where('id',$id)->first();
         $orders->status = 0;
@@ -106,12 +134,49 @@ class OrdersController extends Controller
         return json_encode("Updated");
     }
 
+    public function updateStatusPickup($id){
+        $orders = pickup_orders::where("enabled",1)->where('id',$id)->first();
+        $orders->status = 0;
+        $orders->update();
+
+        return json_encode("Updated");
+    }
+
     public function pickUpForm(Request $request)
     {
-        //$orders = orders::where("enabled",1)->cursorPaginate(10);
+        $message = "";
         $date = Carbon::now();
+        if($request->post()){
 
-        return view('orders.pick-up-form', ["date" => $date]);
+            $pickup_orders = new pickup_orders();
+            $pickup_orders->customer_member_id  = $request->post('member_id');
+            $pickup_orders->customer_name       = $request->post('member_name');
+            $pickup_orders->queue_number        = $request->post('queue_number');
+            $pickup_orders->experience_center   = $request->post('experience_center');
+            $pickup_orders->date                = $request->post('date');
+            $pickup_orders->status              = 1;
+            $pickup_orders->enabled             = 1;
+            $pickup_orders->save();
+
+
+            $pickup_order_id = $pickup_orders->id;
+            
+            foreach($request->post('order_id') as $key => $val){
+                if(!empty($request->post('order_id')[$key])){
+                    $pickup_order_details = new pickup_order_details();
+                    $pickup_order_details->pickup_order_id = $pickup_order_id;
+                    $pickup_order_details->order_id = $request->post('order_id')[$key];
+                    $pickup_order_details->pin = $request->post('pin')[$key];
+                    $pickup_order_details->save();
+                }
+            }
+
+
+            $message = "Thank you! Please wait your queuebee to be called";
+
+        }
+
+        return view('orders.pick-up-form', ["message" => $message,"date" => $date]);
     }
 
 
