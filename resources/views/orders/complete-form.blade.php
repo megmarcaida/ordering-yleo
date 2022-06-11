@@ -14,7 +14,7 @@
         <div class="alert alert-success message" style="display:none;" role="alert">
             Successfully Completed Order!
         </div>
-        <h2>Order Form 
+        <h2>Order Form - Queuebee #{{ $orders->queue_number }}
             <a href="#" id="btn-done" data-id="{{$orders->id}}" style="float:right;" class="btn btn-danger">DONE</a>
             <a href="javascript:void(0)" style="float:right;" onclick = "window.print()" class="btn btn-success">PRINT</a></h2>
         <br>
@@ -125,8 +125,8 @@
         <div id="last_four_digit" class="row">
             <div class="col">
                 <div class="mb-3">
-                    <label for="member_pin" class="form-label">Last 4 digit</label>
-                    <input type="password" class="form-control fw-bold" value="****" readonly>
+                    <label for="last_four_digit" class="form-label">Last 4 digit</label>
+                    <input type="text" class="form-control fw-bold" value="{{ $orders->last_four_digit }}" readonly>
                 </div>
             </div>
         </div>

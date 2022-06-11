@@ -160,6 +160,7 @@
             <div class="col-12 col-lg-4">
                 <div class="d-grid gap-2">
                     <a id="btn-add-more" class="btn btn-danger btn-block">ADD MORE</a>
+                    <br>
                 </div>
             </div>
             <div class="col"></div>
