@@ -156,11 +156,13 @@
             </div>
         </div>
         <div id="buttons_add_row" class="row">
-            <div class="col">
+            <div class="col"></div>
+            <div class="col-12 col-lg-4">
                 <div class="d-grid gap-2">
                     <a id="btn-add-more" class="btn btn-danger btn-block">ADD MORE</a>
                 </div>
             </div>
+            <div class="col"></div>
         </div>
         <div id="payment_method" class="row">
             <div class="col">
