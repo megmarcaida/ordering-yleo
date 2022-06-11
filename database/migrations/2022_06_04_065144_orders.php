@@ -19,7 +19,8 @@ class Orders extends Migration
             $table->string('customer_name')->nullable();
             $table->string('customer_pin')->nullable();
             $table->string('queue_number')->nullable();
-            $table->date('date')->nullable();
+            $table->datetime('date')->nullable();
+            $table->string('experience_center')->nullable();
             $table->string('order_type')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('remarks')->nullable();

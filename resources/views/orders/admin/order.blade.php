@@ -15,27 +15,41 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                        <th scope="col">#</th>
+                                        <th scope="col">Queue #</th>
                                         <th scope="col">Customer Name</th>
                                         <th scope="col">Customer Pin</th>
                                         <th scope="col">Order Type</th>
                                         <th scope="col">Payment Method</th>
                                         <th scope="col">Total Qty</th>
                                         <th scope="col">Total Price</th>
-                                        <th scope="col">Remarks</th>
+                                        <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($orders as $k => $value)
                                         <tr>
-                                            <th scope="row">1</th>
+                                            <td><a href="/complete-form/{{ $value->id }}">{{  $value->queue_number }}</a></td>
                                             <td>{{  $value->customer_name }}</td>
                                             <td>{{  $value->customer_pin }}</td>
                                             <td>{{  $value->order_type }}</td>
-                                            <td>{{  $value->payment_method }}</td>
+                                            <td>@if($value->payment_method == "card_on_file")
+                                                Card on File
+                                                @elseif($value->payment_method == "swipe_card")
+                                                Swipe Card
+                                                @elseif($orders->payment_method == "cash")
+                                                CASH
+                                                @elseif($orders->payment_method == "account_card")
+                                                Account Credit
+                                                @endif
+                                            </td>
                                             <td>{{  $value->total_qty }}</td>
                                             <td>{{  $value->total_price }}</td>
-                                            <td>{{  $value->remarks }}</td>
+                                            <td>@if( $value->status == 1)
+                                                    <p class="text-danger">Pending</p>
+                                                @else
+                                                    <p class="text-success">Completed</p>
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

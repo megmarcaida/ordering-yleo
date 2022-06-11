@@ -9,10 +9,20 @@ class ProductsController extends Controller
 {
     public function autoComplete(Request $request)
     {
-        $products = products::select("product_name")
-                ->where("product_name","LIKE","%{$request->input('query')}%")
-                ->get();
+        $order_type = $request->input('order_type');
 
+        switch($order_type){
+            case "ER":
+                $selected = "er";
+            case "QO":
+                $selected = "qo";
+                break;
+            case "Points":
+                $selected = "points";
+                
+                break;
+        }
+        $products = products::select("product_name")->where("product_name","LIKE","%{$request->input('query')}%")->where($selected,'YES')->get();
         $data = array();
         foreach ($products as $val)
         {

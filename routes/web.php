@@ -21,6 +21,8 @@ Route::get('/', function () {
 
 Route::get('/pick-up-form', [OrdersController::class, 'pickUpForm'])->name('pickUpForm');
 Route::get('/order-form', [OrdersController::class, 'orderForm'])->name('orderForm');
+Route::get('/complete-form/{id}', [OrdersController::class, 'completeForm'])->name('completeForm');
+Route::get('/update-status/{id}', [OrdersController::class, 'updateStatus'])->name('updateStatus');
 Route::post('/order-form', [OrdersController::class, 'orderForm'])->name('orderForm');
 
 Route::get('/autocomplete', [ProductsController::class, 'autoComplete'])->name('autocomplete');
