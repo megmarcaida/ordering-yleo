@@ -15,15 +15,44 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
-                        {{ __('Orders') }}
-                    </x-nav-link>
+
+                    <?php if(isset($_GET['location'])) { ?>
+                        <x-nav-link :href="route('orders')">
+                            {{ __('Orders') }}
+                        </x-nav-link>
+                    <?php }else{ ?>
+                        <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+                            {{ __('Orders') }}
+                        </x-nav-link>
+                    <?php } ?>
                     <x-nav-link :href="route('pickup-orders')" :active="request()->routeIs('pickup-orders')">
                         {{ __('Pick up') }}
                     </x-nav-link>
                     <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
                         {{ __('Products') }}
                     </x-nav-link>
+
+                    
+                    <?php if(isset($_GET['location']) && $_GET['location'] == "manila") { ?>
+                        <x-nav-link :href="route('orders').'?location=manila'" :active="request()->routeIs('orders')">
+                        {{ __('Manila') }}
+                    </x-nav-link>
+                    <?php }else{ ?>
+                        <x-nav-link :href="route('orders').'?location=manila'">
+                        {{ __('Manila') }}
+                    </x-nav-link>
+                    <?php } ?>
+
+
+                    <?php if(isset($_GET['location']) && $_GET['location'] == "davao") { ?>
+                        <x-nav-link :href="route('orders').'?location=davao'"  :active="request()->routeIs('orders')" >
+                            {{ __('Davao') }}
+                        </x-nav-link>
+                    <?php }else{ ?>
+                        <x-nav-link :href="route('orders').'?location=davao'">
+                            {{ __('Davao') }}
+                        </x-nav-link>
+                    <?php } ?>
                 </div>
             </div>
 

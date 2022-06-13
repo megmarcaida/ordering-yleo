@@ -14,8 +14,17 @@ class OrdersController extends Controller
 {
     public function index(Request $request)
     {
-        //dashboard
-        $orders = orders::where("enabled",1)->orderBy('status','desc')->paginate(10);
+        //orders
+
+        $location = $request->get('location');
+
+        if(isset($location))
+            $orders = orders::where("enabled",1)->where("experience_center",$location)->orderBy('status','desc')->paginate(10);
+        else
+            $orders = orders::where("enabled",1)->orderBy('status','desc')->paginate(10);
+        
+        
+        
 
         return view('orders.admin.order', ['orders' => $orders]);
     }
