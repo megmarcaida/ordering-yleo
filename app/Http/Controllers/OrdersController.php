@@ -91,31 +91,50 @@ class OrdersController extends Controller
 
         }
 
-        return view('orders.order-form', ["message" => $message,"date" => $date]);
+        return view('orders.order-form', ["message" => $message,"date" => $date->format('Y-m-d')]);
     }
 
     public function completeForm($id)
     {
         //complete order
-        $orders = orders::where("enabled",1)->where('id',$id)->first();
-        
-        $order_details = order_details::where('order_id',$id)->get();
+        $orders = orders::where("enabled",1)->where('queue_number',$id)->get();
+        $merge = array();
+        foreach($orders as $key => $value){
 
-        $order_detailed = array();
-        foreach($order_details as $k => $v){
+            $order_details = order_details::where('order_id',$value->id)->get();
+            $order_detailed = array();
+            foreach($order_details as $k => $v){
 
-            $products = products::find($v->product_id);
-            $arr['product_name'] = $products->product_name;
-            $arr['product_sku'] = $products->product_sku;
-            $arr['qty_ordered'] = $v['qty_ordered'];
-            $arr['pv'] = $v['pv'];
-            $arr['price'] = $v['price'];
-            $arr['total_pv'] = $v['price'] * $v['qty_ordered'];
-            $arr['total_price'] = $v['price'] * $v['qty_ordered'];
-            array_push($order_detailed,$arr);
+                $products = products::find($v->product_id);
+                $arr['product_name'] = $products->product_name;
+                $arr['product_sku'] = $products->product_sku;
+                $arr['qty_ordered'] = $v['qty_ordered'];
+                $arr['pv'] = $v['pv'];
+                $arr['price'] = $v['price'];
+                $arr['total_pv'] = $v['price'] * $v['qty_ordered'];
+                $arr['total_price'] = $v['price'] * $v['qty_ordered'];
+                array_push($order_detailed,$arr);
+            }
+            
+            $array["order_id"] = $value->id;
+            $array["queue_number"] = $value->queue_number;
+            $array["date"] = $value->date;
+            $array["experience_center"] = $value->experience_center;
+            $array["customer_member_id"] = $value->customer_member_id;
+            $array["customer_name"] = $value->customer_name;
+            $array["customer_pin"] = $value->customer_pin;
+            $array["order_type"] = $value->order_type;
+            $array["total_pv"] = $value->total_pv;
+            $array["total_price"] = $value->total_price;
+            $array["payment_method"] = $value->payment_method;
+            $array["last_four_digit"] = $value->last_four_digit;
+            
+            $array["order_details"] = $order_detailed;
+            array_push($merge, $array);
+            
         }
-
-        return view('orders.complete-form', ['orders' => $orders,"order_details" => $order_detailed]);
+        
+        return view('orders.complete-form', ['orders' => $orders,"merge" => $merge]);
     }
 
     public function completePickupForm($id)
@@ -136,9 +155,12 @@ class OrdersController extends Controller
     }
 
     public function updateStatus($id){
-        $orders = orders::where("enabled",1)->where('id',$id)->first();
-        $orders->status = 0;
-        $orders->update();
+        $orders = orders::where("enabled",1)->where('queue_number',$id)->get();
+        foreach($orders as $key => $val){
+            $val->status = 0;
+            $val->update();
+        }
+        
 
         return json_encode("Updated");
     }
@@ -185,7 +207,7 @@ class OrdersController extends Controller
 
         }
 
-        return view('orders.pick-up-form', ["message" => $message,"date" => $date]);
+        return view('orders.pick-up-form', ["message" => $message,"date" => $date->format('Y-m-d')]);
     }
 
 

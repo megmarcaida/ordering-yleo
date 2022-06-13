@@ -29,7 +29,7 @@
                                     <tbody>
                                         @foreach($orders as $k => $value)
                                         <tr>
-                                            <td><a href="/complete-form/{{ $value->id }}">{{  $value->queue_number }}</a></td>
+                                            <td><a href="/complete-form/{{ $value->queue_number }}">{{  $value->queue_number }}</a></td>
                                             <td>{{  $value->customer_name }}</td>
                                             <td>{{  $value->customer_pin }}</td>
                                             <td>{{  $value->customer_member_id }}</td>

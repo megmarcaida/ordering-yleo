@@ -13,7 +13,7 @@
                         <div class="row row-cols-1 row-cols-md-3 g-4">
 
                             @foreach($orders as $k => $v)
-                            <a href="/complete-form/{{ $v->id }}" style="text-decoration:none">
+                            <a href="/complete-form/{{ $v->queue_number }}" style="text-decoration:none">
                                 <div class="col">
                                     <div class="card h-100">
                                         <div class="card-body">
@@ -25,7 +25,7 @@
                             @endforeach
 
                             @foreach($pickup_orders as $k => $v)
-                            <a href="/complete-pickup-form/{{ $v->id }}" style="text-decoration:none">
+                            <a href="/complete-pickup-form/{{ $v->queue_number }}" style="text-decoration:none">
                                 <div class="col">
                                     <div class="card h-100">
                                         <div class="card-body">
