@@ -43,7 +43,7 @@ class OrdersController extends Controller
     {
         //dashboard
         $orders = DB::table('orders')->select('queue_number')->where("status",1)->groupBy('queue_number')->get();//orders::where("status",1)->groupBy('queue_number')->get();
-        $pickup_orders = DB::table('pickup_orders')->select('queue_number')->where("status",1)->groupBy('queue_number')->get(); //pickup_orders::where("status",1)->groupBy('queue_number')->get();
+        $pickup_orders = DB::table('pickup_orders')->select('queue_number','id')->where("status",1)->get(); //pickup_orders::where("status",1)->groupBy('queue_number')->get();
 
         return view('dashboard', ['orders' => $orders,'pickup_orders' => $pickup_orders]);
     }
