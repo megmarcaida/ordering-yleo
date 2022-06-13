@@ -14,7 +14,7 @@
         <div class="alert alert-success message" style="display:none;" role="alert">
             Successfully Completed Order!
         </div>
-        <h2>Order Form 
+        <h2>Pick up Form 
             <a href="#" id="btn-done" data-id="{{$pickup_orders->id}}" style="float:right;" class="btn btn-danger">DONE</a>
             <a href="javascript:void(0)" style="float:right;" onclick = "window.print()" class="btn btn-success">PRINT</a></h2>
         <br>
