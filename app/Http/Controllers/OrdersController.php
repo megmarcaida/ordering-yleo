@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\orders;
 use App\Models\products;
 use App\Models\order_details;
@@ -41,8 +42,8 @@ class OrdersController extends Controller
     public function dashboard(Request $request)
     {
         //dashboard
-        $orders = orders::where("status",1)->get();
-        $pickup_orders = pickup_orders::where("status",1)->get();
+        $orders = DB::table('orders')->select('queue_number')->where("status",1)->groupBy('queue_number')->get();//orders::where("status",1)->groupBy('queue_number')->get();
+        $pickup_orders = DB::table('pickup_orders')->select('queue_number')->where("status",1)->groupBy('queue_number')->get(); //pickup_orders::where("status",1)->groupBy('queue_number')->get();
 
         return view('dashboard', ['orders' => $orders,'pickup_orders' => $pickup_orders]);
     }
