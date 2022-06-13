@@ -11,6 +11,9 @@
                 <div class="p-6 bg-white border-b border-gray-200 table-responsive">
                     <div class="container-fluid">
                         <div class="row">
+                            <form method="get">
+                                <input type="search" name="q" class="form-control typeahead" value="" placeholder="input queuebee number and press enter...">
+                            </form>
                             <div id="refresh_div" class="col">
                                 <table class="table">
                                     <thead>
@@ -56,7 +59,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                {{ $orders->links()}}
+                                {{ $orders->appends(['q' => request()->get('q')])->links() }}
                             </div>
                         </div>
                    </div>

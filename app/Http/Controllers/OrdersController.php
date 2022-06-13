@@ -17,11 +17,12 @@ class OrdersController extends Controller
         //orders
 
         $location = $request->get('location');
+        $q = $request->get('q');
 
         if(isset($location))
-            $orders = orders::where("enabled",1)->where("experience_center",$location)->orderBy('status','desc')->paginate(10);
+            $orders = orders::where("enabled",1)->where("experience_center",$location)->where("queue_number","like","%".$request->input('q')."%")->orderBy('status','desc')->paginate(10);
         else
-            $orders = orders::where("enabled",1)->orderBy('status','desc')->paginate(10);
+            $orders = orders::where("enabled",1)->where("queue_number","like","%".$request->input('q')."%")->orderBy('status','desc')->paginate(10);
         
         
         
@@ -32,7 +33,7 @@ class OrdersController extends Controller
     public function indexPickUp(Request $request)
     {
         //dashboard
-        $orders = pickup_orders::where("enabled",1)->orderBy('status','desc')->paginate(10);
+        $orders = pickup_orders::where("enabled",1)->where("queue_number","like","%".$request->input('q')."%")->orderBy('status','desc')->paginate(10);
 
         return view('orders.admin.pickup-order', ['orders' => $orders]);
     }
