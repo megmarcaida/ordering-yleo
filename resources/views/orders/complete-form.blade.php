@@ -19,7 +19,7 @@
             <a href="javascript:void(0)" style="float:right;" onclick = "window.print()" class="btn btn-success">PRINT</a></h3>
         <br>
         @foreach($merge as $k => $v)
-        <h5>Order ID #{{ $v['order_id'] }}</h5>
+        <h5>Order {{ $v['current_page'] }} out of {{ $v['total_page'] }}</h5>
         <br>
         <div id="customer_info" class="row">
             

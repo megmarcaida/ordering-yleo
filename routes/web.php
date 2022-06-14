@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 //complete and update status 
-Route::get('/complete-form/{id}', [OrdersController::class, 'completeForm'])->name('completeForm');
+Route::get('/complete-form/{id}/{ec}', [OrdersController::class, 'completeForm'])->name('completeForm');
 Route::get('/complete-pickup-form/{id}', [OrdersController::class, 'completePickupForm'])->name('completePickupForm');
 Route::get('/update-status/{id}', [OrdersController::class, 'updateStatus'])->name('updateStatus');
 Route::get('/update-status-pickup/{id}', [OrdersController::class, 'updateStatusPickup'])->name('updateStatusPickup');

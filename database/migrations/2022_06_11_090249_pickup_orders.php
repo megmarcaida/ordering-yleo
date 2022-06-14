@@ -22,6 +22,8 @@ class PickupOrders extends Migration
             $table->string('experience_center')->nullable();
             $table->integer('status')->nullable();
             $table->integer('enabled')->nullable();
+            $table->integer('current_page')->nullable();
+            $table->integer('total_page')->nullable();
             $table->timestamps();
         });
     }

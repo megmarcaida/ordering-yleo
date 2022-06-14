@@ -13,6 +13,7 @@
                         <div class="row">
                             <form method="get">
                                 <input type="search" name="q" class="form-control typeahead" value="" placeholder="input queuebee number and press enter...">
+                                <input type="hidden"value="{{ isset($_GET['location']) ? $_GET['location'] : '' }}" name="location">
                             </form>
                             <div id="refresh_div" class="col">
                                 <table class="table">
@@ -32,7 +33,7 @@
                                     <tbody>
                                         @foreach($orders as $k => $value)
                                         <tr>
-                                            <td><a href="/complete-form/{{ $value->queue_number }}">{{  $value->queue_number }}</a></td>
+                                            <td><a class="{{ $value->experience_center == 'davao' ? 'text-success' : 'text-primary' }}" href="/complete-form/{{ $value->queue_number }}/{{ $value->experience_center }}">{{  $value->queue_number }}</a></td>
                                             <td>{{  $value->customer_name }}</td>
                                             <td>{{  $value->customer_pin }}</td>
                                             <td>{{  $value->customer_member_id }}</td>

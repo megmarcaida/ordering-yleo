@@ -16,43 +16,125 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <?php if(isset($_GET['location'])) { ?>
-                        <x-nav-link :href="route('orders')">
+                    <?php if(Auth::user()['role_id'] == 1) { ?>
+                        <?php if(isset($_GET['location'])) { ?>
+                            <x-nav-link :href="route('orders')">
+                                {{ __('Orders') }}
+                            </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+                                {{ __('Orders') }}
+                            </x-nav-link>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "manila") { ?>
+                            <x-nav-link :href="route('orders').'?location=manila'" :active="request()->routeIs('orders')">
+                            {{ __('Manila') }}
+                        </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('orders').'?location=manila'">
+                            {{ __('Manila') }}
+                        </x-nav-link>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "davao") { ?>
+                            <x-nav-link :href="route('orders').'?location=davao'"  :active="request()->routeIs('orders')" >
+                                {{ __('Davao') }}
+                            </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('orders').'?location=davao'">
+                                {{ __('Davao') }}
+                            </x-nav-link>
+                        <?php } ?>
+                    <?php } ?>    
+
+                    <?php if(Auth::user()['role_id'] == 3) { ?>
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "manila") { ?>
+                            <x-nav-link :href="route('orders').'?location=manila'" :active="request()->routeIs('orders')">
                             {{ __('Orders') }}
                         </x-nav-link>
-                    <?php }else{ ?>
-                        <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('orders').'?location=manila'">
                             {{ __('Orders') }}
                         </x-nav-link>
+                        <?php } ?>
                     <?php } ?>
-                    <x-nav-link :href="route('pickup-orders')" :active="request()->routeIs('pickup-orders')">
-                        {{ __('Pick up') }}
-                    </x-nav-link>
+
+                    <?php if(Auth::user()['role_id'] == 2) { ?>
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "davao") { ?>
+                            <x-nav-link :href="route('orders').'?location=davao'"  :active="request()->routeIs('orders')" >
+                                {{ __('Orders') }}
+                            </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('orders').'?location=davao'">
+                                {{ __('Orders') }}
+                            </x-nav-link>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <?php if(Auth::user()['role_id'] == 1) { ?>
+
+                        <?php if(isset($_GET['location'])) { ?>
+                            <x-nav-link :href="route('pickup-orders')">
+                                {{ __('Pick up') }}
+                            </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('pickup-orders')" :active="request()->routeIs('pickup-orders')">
+                                {{ __('Pick up') }}
+                            </x-nav-link>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "manila") { ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=manila'" :active="request()->routeIs('pickup-orders')">
+                            {{ __('Manila Pick up') }}
+                        </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=manila'">
+                            {{ __('Manila Pick up') }}
+                        </x-nav-link>
+                        <?php } ?>
+
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "davao") { ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=davao'" :active="request()->routeIs('pickup-orders')" >
+                                {{ __('Davao Pick up') }}
+                            </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=davao'">
+                                {{ __('Davao Pick up') }}
+                            </x-nav-link>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <?php if(Auth::user()['role_id'] == 3) { ?>
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "manila") { ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=manila'" :active="request()->routeIs('pickup-orders')">
+                            {{ __('Pick up') }}
+                        </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=manila'">
+                            {{ __('Pick up') }}
+                        </x-nav-link>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <?php if(Auth::user()['role_id'] == 2) { ?>
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "davao") { ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=davao'"  :active="request()->routeIs('pickup-orders')" >
+                                {{ __('Pick up') }}
+                            </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('pickup-orders').'?location=davao'">
+                                {{ __('Pick up') }}
+                            </x-nav-link>
+                        <?php } ?>
+                    <?php } ?>
+
+                    
                     <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
                         {{ __('Products') }}
                     </x-nav-link>
 
-                    
-                    <?php if(isset($_GET['location']) && $_GET['location'] == "manila") { ?>
-                        <x-nav-link :href="route('orders').'?location=manila'" :active="request()->routeIs('orders')">
-                        {{ __('Manila') }}
-                    </x-nav-link>
-                    <?php }else{ ?>
-                        <x-nav-link :href="route('orders').'?location=manila'">
-                        {{ __('Manila') }}
-                    </x-nav-link>
-                    <?php } ?>
-
-
-                    <?php if(isset($_GET['location']) && $_GET['location'] == "davao") { ?>
-                        <x-nav-link :href="route('orders').'?location=davao'"  :active="request()->routeIs('orders')" >
-                            {{ __('Davao') }}
-                        </x-nav-link>
-                    <?php }else{ ?>
-                        <x-nav-link :href="route('orders').'?location=davao'">
-                            {{ __('Davao') }}
-                        </x-nav-link>
-                    <?php } ?>
+                   
                 </div>
             </div>
 

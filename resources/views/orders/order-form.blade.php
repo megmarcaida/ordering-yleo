@@ -20,13 +20,46 @@
                 $("#queue_block").hide();
                 $("#buttons_block").hide();
                 $("#btn-add-more").hide();
+                $("#select-pages").hide();
                 $("h2").hide();
             },500)
             
         </script>  
         @endif
-        <h2>Order Form <a href="/" style="float:right;" class="btn btn-danger">BACK</a></h2>
-        <br>
+        <h2>Order Form </h2>
+            <div id="select-pages">
+                    <select id="current_page" name="current_page" required>
+                        <option selected value="">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">6</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+            out of 
+
+                    <select id="total_page" name="total_page" required>
+                        <option selected value="">Select</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">6</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+            </div>
+        
+        <a href="/" style="float:right;" class="btn btn-danger">BACK</a>
+        <br><br>
         <div id="customer_info" class="row">
             
             <div class="col">
@@ -303,7 +336,7 @@
 
     $("#btn-complete").on("click",function(){
 
-        if($("#member_name").val() == "" || $("#member_pin").val() == "" || $("#member_id").val() == "" || $("#order_type").val() == "" || $("#experience_center option:selected").val() == ""){
+        if($("#member_name").val() == "" || $("#member_pin").val() == "" || $("#member_id").val() == "" || $("#order_type").val() == "" || $("#experience_center option:selected").val() == "" || $("#current_page option:selected").val() == "" || $("#total_page option:selected").val() == ""){
             alert("Please fill in the fields")
             return false;
         }
@@ -318,6 +351,7 @@
         $("#btn-add-more").hide();
         $("#last_four_digit").hide();
         $("#queue_block").show();
+        $("#select-pages").hide();
         return false;
     });
 
@@ -332,6 +366,7 @@
         $("#last_four_digit").show();
         $("#queue_block").hide();
         $("#btn-complete").show();
+                $("#select-pages").show();
         return false;
     });
 

@@ -10,6 +10,7 @@ use App\Models\order_details;
 use App\Models\pickup_orders;
 use App\Models\pickup_order_details;
 use Carbon\Carbon;
+use Auth;
 
 class OrdersController extends Controller
 {
@@ -18,8 +19,7 @@ class OrdersController extends Controller
         //orders
 
         $location = $request->get('location');
-        $q = $request->get('q');
-
+        
         if(isset($location))
             $orders = orders::where("enabled",1)->where("experience_center",$location)->where("queue_number","like","%".$request->input('q')."%")->orderBy('status','desc')->paginate(10);
         else
@@ -34,7 +34,12 @@ class OrdersController extends Controller
     public function indexPickUp(Request $request)
     {
         //dashboard
-        $orders = pickup_orders::where("enabled",1)->where("queue_number","like","%".$request->input('q')."%")->orderBy('status','desc')->paginate(10);
+        $location = $request->get('location');
+        if(isset($location))
+            $orders = pickup_orders::where("enabled",1)->where("experience_center",$location)->where("queue_number","like","%".$request->input('q')."%")->orderBy('status','desc')->paginate(10);
+        else
+            $orders = pickup_orders::where("enabled",1)->where("queue_number","like","%".$request->input('q')."%")->orderBy('status','desc')->paginate(10);
+            
 
         return view('orders.admin.pickup-order', ['orders' => $orders]);
     }
@@ -42,8 +47,23 @@ class OrdersController extends Controller
     public function dashboard(Request $request)
     {
         //dashboard
-        $orders = DB::table('orders')->select('queue_number')->where("status",1)->groupBy('queue_number')->get();//orders::where("status",1)->groupBy('queue_number')->get();
-        $pickup_orders = DB::table('pickup_orders')->select('queue_number','id')->where("status",1)->get(); //pickup_orders::where("status",1)->groupBy('queue_number')->get();
+
+        $select = "";
+        switch(Auth::user()['role_id']){
+            case 1:
+                $select = "";
+                break;
+            case 2:
+                $select = "davao";
+                break;
+            case 3:
+                $select = "manila";
+                break;
+        }
+
+
+        $orders = DB::table('orders')->select('queue_number','experience_center')->where("status",1)->where('experience_center','like','%'.$select.'%')->groupBy('queue_number','experience_center')->get();//orders::where("status",1)->groupBy('queue_number')->get();
+        $pickup_orders = DB::table('pickup_orders')->select('queue_number','id','experience_center')->where("status",1)->where('experience_center','like','%'.$select.'%')->groupBy('experience_center','queue_number','id')->get(); //pickup_orders::where("status",1)->groupBy('queue_number')->get();
 
         return view('dashboard', ['orders' => $orders,'pickup_orders' => $pickup_orders]);
     }
@@ -66,6 +86,8 @@ class OrdersController extends Controller
             $order->experience_center   = $request->post('experience_center');
             $order->date                = $request->post('date');
             $order->total_price         = $request->post('total_price');
+            $order->current_page        = $request->post('current_page');
+            $order->total_page          = $request->post('total_page');
             $order->status              = 1;
             $order->enabled             = 1;
             $order->save();
@@ -96,10 +118,23 @@ class OrdersController extends Controller
         return view('orders.order-form', ["message" => $message,"date" => $date->format('Y-m-d')]);
     }
 
-    public function completeForm($id)
+    public function completeForm($id,$ec)
     {
         //complete order
-        $orders = orders::where("enabled",1)->where('queue_number',$id)->get();
+        $select = "";
+        switch(Auth::user()['role_id']){
+            case 1:
+                $select = "";
+                break;
+            case 2:
+                $select = "davao";
+                break;
+            case 3:
+                $select = "manila";
+                break;
+        }
+        
+        $orders = orders::where("enabled",1)->where('queue_number',$id)->where('experience_center','like','%'.$ec.'%')->get();
         $merge = array();
         foreach($orders as $key => $value){
 
@@ -128,6 +163,8 @@ class OrdersController extends Controller
             $array["order_type"] = $value->order_type;
             $array["total_pv"] = $value->total_pv;
             $array["total_price"] = $value->total_price;
+            $array["current_page"] = $value->current_page;
+            $array["total_page"] = $value->total_page;
             $array["payment_method"] = $value->payment_method;
             $array["last_four_digit"] = $value->last_four_digit;
             

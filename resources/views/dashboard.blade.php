@@ -13,11 +13,11 @@
                         <div class="row row-cols-1 row-cols-md-3 g-4">
 
                             @foreach($orders as $k => $v)
-                            <a href="/complete-form/{{ $v->queue_number }}" style="text-decoration:none">
+                            <a href="/complete-form/{{ $v->queue_number }}/{{ $v->experience_center }}" style="text-decoration:none">
                                 <div class="col">
                                     <div class="card h-100">
                                         <div class="card-body">
-                                            <h1 class="card-title text-primary">{{ $v->queue_number }}</h1>
+                                            <h1 class="card-title {{ $v->experience_center == 'davao' ? 'text-success' : 'text-primary' }}">{{ $v->queue_number }}</h1>
                                         </div>
                                     </div>
                                 </div>
