@@ -248,6 +248,7 @@
     var total_price = 0;
     var total_pv = 0;
     var order_type = "";
+    var current_count = 5
     $(".disabled").prop('readonly',true)
 
     function initTypeahead() {
@@ -389,7 +390,8 @@
     function calculateTotal(){
         var totalPv = 0;
         var totalPrice = 0;
-        for(var i = 1; i<= 5; i++){
+        console.log(current_count)
+        for(var i = 1; i<= current_count; i++){
             console.log($("#product_total_pv_"+i).val())
             if($("#product_total_pv_"+i).val() != ""){
                 totalPv += parseFloat($("#product_total_pv_"+i).val())
@@ -403,7 +405,6 @@
         $("#total_price").val(totalPrice)
     }
 
-    var current_count = 5
     $("#btn-add-more").on("click",function(){
         var selected = $("#order_type option:selected").val();
         if(selected == ''){
@@ -429,6 +430,19 @@
                 calculateTotal()
             }
             
+        })
+
+        $(".calculate").on("change",function(){
+            var qty = $(this).val();
+            var id = $(this).attr("data-no")
+            var price = $("#product_unit_price_"+id).val();
+            var pv = $("#product_pv_"+id).val();
+
+            $("#product_total_price_"+id).val(qty*price)
+            $("#product_total_pv_"+id).val(qty*pv)
+
+            calculateTotal()
+
         })
        
         current_count += num_to_add;
