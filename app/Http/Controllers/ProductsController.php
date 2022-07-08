@@ -15,6 +15,7 @@ class ProductsController extends Controller
         switch($order_type){
             case "ER":
                 $selected = "er";
+                break;  
             case "QO":
                 $selected = "qo";
                 break;
