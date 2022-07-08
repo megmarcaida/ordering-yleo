@@ -20,6 +20,12 @@
                             </div>
                             <script>setTimeout(function() { $(".alert").fadeOut('slow') },5000)</script>
                             @endif
+                            @if($error)
+                            <div class="alert alert-danger" role="alert">
+                                {{ $error }} 
+                            </div>
+                            <script>setTimeout(function() { $(".alert").fadeOut('slow') },5000)</script>
+                            @endif
                             <div class="row">
                                 
                                 <div class="col">

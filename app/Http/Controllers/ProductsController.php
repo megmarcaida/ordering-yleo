@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\products;
+use Validator;
 
 class ProductsController extends Controller
 {
@@ -85,8 +86,19 @@ class ProductsController extends Controller
     public function productInfo(Request $request, $id){
         $product = products::find($id);
         $message ='';
-        
+        $error = '';
+
         if($request->post()){
+
+            $isExist = products::where('product_sku',$request->post('product_sku'))->first();
+            
+            if ($isExist && $product->product_sku != $request->post('product_sku'))
+            {   
+                return view('products.product-info', ['message'=>$message ,'error' => 'The product sku  '. $request->post('product_sku')  .' is already exist.','product' => $product]);
+                
+                //return redirect()->back()->withErrors($v->errors());
+            }
+
             $product->product_sku           = $request->post('product_sku');
             $product->product_name          = $request->post('product_name');
             $product->product_description   = $request->post('product_description');
@@ -107,7 +119,7 @@ class ProductsController extends Controller
 
         
 
-        return view('products.product-info', ['message' => $message,'product' => $product]);
+        return view('products.product-info', ['message' => $message, 'error'=>$error,'product' => $product]);
     }
 
     public function deleteProduct(Request $request){
