@@ -196,8 +196,8 @@ class OrdersController extends Controller
     public function updateStatus($id){
         $orders = orders::where("enabled",1)->where('queue_number',$id)->get();
         foreach($orders as $key => $val){
-            $val->status = 0;
-            $val->update();
+            $orderdetails = order_details::where('order_id',$val->id)->delete();
+            $val->delete();
         }
         
 
