@@ -115,8 +115,7 @@ class ProductsController extends Controller
         $message = '';
         if(!empty($request->input('id'))){
             $product = products::find($request->input('id'));
-            $product->status = 0;
-            $product->update();
+            $product->delete();
 
             $message = $product->product_name . " has been remove!";
         }

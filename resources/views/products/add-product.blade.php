@@ -115,7 +115,7 @@
                             <div id="buttons_block" class="row">
                                 <div class="col">
                                     <div class="d-grid gap-2">
-                                        <button id="btn-submit" type="submit" class="btn btn-primary btn-block">UPDATE</button>
+                                        <button id="btn-submit" type="submit" class="btn btn-primary btn-block">ADD</button>
                                     </div>
                                 </div>
                                 <div class="col">
