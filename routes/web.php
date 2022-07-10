@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\EnrollmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,11 @@ Route::post('/order-form', [OrdersController::class, 'orderForm'])->name('orderF
 Route::post('/pick-up-form', [OrdersController::class, 'pickUpForm'])->name('pickUpForm');
 Route::get('/autocomplete', [ProductsController::class, 'autoComplete'])->name('autocomplete');
 Route::get('/get-product-by-name', [ProductsController::class, 'getProductByName'])->name('get-product-by-name');
+Route::get('/enrollment-form', [EnrollmentController::class, 'enrollmentForm'])->name('enrollmentForm');
+Route::post('/enrollment-form', [EnrollmentController::class, 'enrollmentForm'])->name('enrollmentForm');
+Route::get('/get-cities', [EnrollmentController::class, 'getCities'])->name('getCities');
+Route::get('/get-zipcode', [EnrollmentController::class, 'getZipcode'])->name('getZipcode');
+
 
 //admin
 Route::get('/dashboard', [OrdersController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
@@ -43,6 +49,8 @@ Route::post('/product-info/{id}', [ProductsController::class, 'productInfo'])->m
 Route::get('/add-product', [ProductsController::class, 'addProduct'])->middleware(['auth'])->name('add-product');
 Route::post('/add-product', [ProductsController::class, 'addProduct'])->middleware(['auth'])->name('add-product');
 Route::get('/delete-product', [ProductsController::class, 'deleteProduct'])->middleware(['auth'])->name('delete-product');
+Route::get('/enrollments', [EnrollmentController::class, 'enrollmentsList'])->middleware(['auth'])->name('enrollments');
+Route::get('/delete-enrollments', [EnrollmentController::class, 'deleteUser'])->middleware(['auth'])->name('delete-enrollments');
 
 
 

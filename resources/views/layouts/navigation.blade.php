@@ -133,6 +133,10 @@
                     <x-nav-link :href="route('products')" :active="request()->routeIs('products')">
                         {{ __('Products') }}
                     </x-nav-link>
+                    
+                    <x-nav-link :href="route('enrollments')" :active="request()->routeIs('enrollments')">
+                        {{ __('Enrollments List') }}
+                    </x-nav-link>
 
                    
                 </div>

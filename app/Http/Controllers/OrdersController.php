@@ -64,8 +64,9 @@ class OrdersController extends Controller
 
         $orders = DB::table('orders')->select('queue_number','experience_center')->where("status",1)->where('experience_center','like','%'.$select.'%')->groupBy('queue_number','experience_center')->get();//orders::where("status",1)->groupBy('queue_number')->get();
         $pickup_orders = DB::table('pickup_orders')->select('queue_number','id','experience_center')->where("status",1)->where('experience_center','like','%'.$select.'%')->groupBy('experience_center','queue_number','id')->get(); //pickup_orders::where("status",1)->groupBy('queue_number')->get();
+        $enrollments = DB::table('enrollments')->select('queue_number','id','experience_center')->where("status",1)->where('experience_center','like','%'.$select.'%')->groupBy('experience_center','queue_number','id')->get();
 
-        return view('dashboard', ['orders' => $orders,'pickup_orders' => $pickup_orders]);
+        return view('dashboard', ['orders' => $orders,'pickup_orders' => $pickup_orders, 'enrollments' => $enrollments]);
     }
 
     public function orderForm(Request $request)

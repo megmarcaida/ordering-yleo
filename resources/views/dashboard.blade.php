@@ -35,6 +35,18 @@
                                 </div>
                             </a>
                             @endforeach
+
+                            @foreach($enrollments as $k => $v)
+
+                            <div class="col">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                    <h1 class="card-title {{ $v->experience_center == 'davao' ? 'text-danger' : 'text-danger' }}">{{ $v->queue_number }}</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            @endforeach
                             
                         </div>
                     </div>

@@ -25,12 +25,12 @@
            
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <img style="width:50%" src="https://images.ctfassets.net/qx1dg9syx02d/5oUBHKJeQvkrp1ZFH4DnXu/d17b5dd51ef5150c2f6b78fdf6cbb310/yl-logo-color.svg" />
+                    <img style="width:100%" src="https://images.ctfassets.net/qx1dg9syx02d/5oUBHKJeQvkrp1ZFH4DnXu/d17b5dd51ef5150c2f6b78fdf6cbb310/yl-logo-color.svg" />
                     
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="grid grid-cols-1 md:grid-cols-1">
                         <div class="p-6">
                             <div class="flex items-center">
                                 <div class="ml-6 text-lg leading-7 font-semibold text-center"><a href="/pick-up-form" class="underline text-gray-900 dark:text-white"><h1>Pick Up Form</h1></a></div>
@@ -40,6 +40,13 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
                             <div class="flex items-center">
                                 <div class="ml-6 text-lg leading-7 font-semibold text-center"><a href="/order-form" class="underline text-gray-900 dark:text-white"><h1>Order Form</h1></a></div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                            <div class="flex items-center">
+                                <div class="ml-6 text-lg leading-7 font-semibold text-center"><a href="/enrollment-form" class="underline text-gray-900 dark:text-white"><h1>Enrollment Form</h1></a></div>
                             </div>
                         </div>
                     </div>
