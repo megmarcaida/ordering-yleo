@@ -38,13 +38,15 @@
 
                             @foreach($enrollments as $k => $v)
 
-                            <div class="col">
-                                <div class="card h-100">
-                                    <div class="card-body">
-                                    <h1 class="card-title {{ $v->experience_center == 'davao' ? 'text-danger' : 'text-danger' }}">{{ $v->queue_number }}</h1>
+                            <a href="/complete-enrollment/{{ $v->queue_number }}/{{ $v->experience_center }}" style="text-decoration:none">
+                                <div class="col">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h1 class="card-title {{ $v->experience_center == 'davao' ? 'text-success' : 'text-primary' }}">{{ $v->queue_number }}</h1>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                             
                             @endforeach
                             

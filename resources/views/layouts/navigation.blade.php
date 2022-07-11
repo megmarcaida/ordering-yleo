@@ -134,9 +134,30 @@
                         {{ __('Products') }}
                     </x-nav-link>
                     
-                    <x-nav-link :href="route('enrollments')" :active="request()->routeIs('enrollments')">
-                        {{ __('Enrollments List') }}
-                    </x-nav-link>
+
+                    <?php if(Auth::user()['role_id'] == 3) { ?>
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "manila") { ?>
+                            <x-nav-link :href="route('enrollments').'?location=manila'" :active="request()->routeIs('enrollments')">
+                            {{ __('Enrollments List') }}
+                        </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('enrollments').'?location=manila'">
+                            {{ __('Enrollments List') }}
+                        </x-nav-link>
+                        <?php } ?>
+                    <?php } ?>
+
+                    <?php if(Auth::user()['role_id'] == 2) { ?>
+                        <?php if(isset($_GET['location']) && $_GET['location'] == "davao") { ?>
+                            <x-nav-link :href="route('enrollments').'?location=davao'"  :active="request()->routeIs('enrollments')" >
+                                {{ __('Enrollments List') }}
+                            </x-nav-link>
+                        <?php }else{ ?>
+                            <x-nav-link :href="route('enrollments').'?location=davao'">
+                                {{ __('Enrollments List') }}
+                            </x-nav-link>
+                        <?php } ?>
+                    <?php } ?>
 
                    
                 </div>

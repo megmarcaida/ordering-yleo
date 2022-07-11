@@ -14,7 +14,8 @@
                             <div class="col">
                                 <div id="message"></div>
                                 <form method="get">
-                                    <input type="search" name="q" class="form-control typeahead" value="" placeholder="User search...">
+                                    <input type="search" name="q" class="form-control typeahead" value="" placeholder="Queuebee no. search...">
+                                    <input type="hidden"value="{{ isset($_GET['location']) ? $_GET['location'] : '' }}" name="location">
                                 </form>
                                 <table class="table">
                                     <thead>
@@ -48,7 +49,7 @@
                                                     <p class="text-danger">Disabled</p>
                                                 @endif
                                             </td>
-                                            <td><a data-id="{{ $value->id }}" class="btn btn-danger btn-delete">Delete</a></td>
+                                            <td><a data-id="{{ $value->id }}" class="btn btn-danger btn-delete">DONE            </a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -62,33 +63,4 @@
             </div>
         </div>
     </div>
-    <script>
-        $(".btn-delete").on('click',function(){
-
-            if(confirm("Are you sure you want to delete this user permanently?")){
-                var id = $(this).attr('data-id')
-                
-                var path = "{{ route('delete-enrollments') }}";
-                $.get(path, {id: id}, function(data){
-                    $("#message").html("<div class='alert alert-success'>"+ data + "</div>")
-                    window.location = '/enrollments'
-                });
-            }
-
-        })
-        var path = "{{ route('autocomplete') }}";
-        function initTypeahead() {
-            // Should probably add code here to only grab elements that are not already initialized
-            var elements = $('input.typeahead');
-            $(elements).typeahead({
-                source:  function (query, process) {
-                return $.get(path+"?order_type=", { query: query }, function (data) {
-                        return process(data);
-                    });
-                }
-            });
-        }
-        
-        initTypeahead();
-    </script>
 </x-app-layout>

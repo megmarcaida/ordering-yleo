@@ -25,6 +25,8 @@ Route::get('/complete-form/{id}/{ec}', [OrdersController::class, 'completeForm']
 Route::get('/complete-pickup-form/{id}', [OrdersController::class, 'completePickupForm'])->name('completePickupForm');
 Route::get('/update-status/{id}', [OrdersController::class, 'updateStatus'])->name('updateStatus');
 Route::get('/update-status-pickup/{id}', [OrdersController::class, 'updateStatusPickup'])->name('updateStatusPickup');
+Route::get('/complete-enrollment/{id}/{ec}', [EnrollmentController::class, 'completeEnrollment'])->name('completeEnrollment');
+Route::get('/update-status-enrollment/{id}', [EnrollmentController::class, 'updateStatusEnrollment'])->name('updateStatusEnrollment');
 
 //forms
 Route::get('/order-form', [OrdersController::class, 'orderForm'])->name('orderForm');
@@ -37,6 +39,8 @@ Route::get('/enrollment-form', [EnrollmentController::class, 'enrollmentForm'])-
 Route::post('/enrollment-form', [EnrollmentController::class, 'enrollmentForm'])->name('enrollmentForm');
 Route::get('/get-cities', [EnrollmentController::class, 'getCities'])->name('getCities');
 Route::get('/get-zipcode', [EnrollmentController::class, 'getZipcode'])->name('getZipcode');
+
+Route::get('/autocomplete-enrollment', [EnrollmentController::class, 'autoComplete'])->name('autoComplete');
 
 
 //admin

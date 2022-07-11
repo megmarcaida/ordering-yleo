@@ -1,6 +1,6 @@
 <x-guest-layout>
     
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
         <a href="/">
@@ -9,7 +9,7 @@
         <br>
         @if($message)
         <div class="alert alert-success" role="alert">
-            {{ $message }} <br> Submit another request? <a href="/pick-up-form">Click Here</a>
+            {{ $message }} <br> Submit another request? <a href="/enrollment-form">Click Here</a>
         </div>
         <script>
             setTimeout(function(){
@@ -54,15 +54,15 @@
 
                 <div class="mb-3">
                     <label for="firstname" class="form-label">First Name <code>*</code></label>
-                    <input id="firstname" type="text" class="form-control" value="test" name="firstname" required>
+                    <input id="firstname" type="text" class="form-control"  name="firstname" required>
                 </div>
                 <div class="mb-3">
                     <label for="middlename" class="form-label">Middle Name</label>
-                    <input id="middlename" type="text" class="form-control" value="test" name="middlename" required>
+                    <input id="middlename" type="text" class="form-control"  name="middlename" required>
                 </div>
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Last Name <code>*</code></label>
-                    <input id="lastname" type="text" class="form-control" value="test" name="lastname" required>
+                    <input id="lastname" type="text" class="form-control"  name="lastname" required>
                 </div>
                 
                 <div class="mb-3">
@@ -98,37 +98,37 @@
 
                 <div class="mb-3">
                     <label for="phonenumber" class="form-label">Phone number <code>*</code></label>
-                    <input id="phonenumber" type="text" class="form-control check_number" placeholder="09...." value="09477277091" pattern="^(09|\+639)\d{9}$" name="phonenumber" required>
+                    <input id="phonenumber" type="text" class="form-control check_number" placeholder="09...." pattern="^(09|\+639)\d{9}$" name="phonenumber" required>
                     <label class="phonenumber text-danger" style="display:none" for="text2">Please enter correct PH phone number</label>
                 </div>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email Address <code>*</code></label>
-                    <input id="email" type="email" value="test@gmail.com" class="form-control" name="email" required>
+                    <input id="email" type="email" class="form-control" name="email" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="member_id_enroller" class="form-label">Member ID Enroller <code>*</code></label>
-                    <input id="member_id_enroller" type="text" class="form-control" value="test" name="member_id_enroller" required>
+                    <input id="member_id_enroller" type="text" class="form-control"  name="member_id_enroller" required>
                 </div>
                 <div class="mb-3">
                     <label for="member_id_sponsor" class="form-label">Member ID Sponsor <code>*</code></label>
-                    <input id="member_id_sponsor" type="text" class="form-control" value="test" name="member_id_sponsor" required>
+                    <input id="member_id_sponsor" type="text" class="form-control"  name="member_id_sponsor" required>
                 </div>
                 
                 <div class="mb-3">
                     <label for="username" class="form-label">Username <code>*</code></label>
-                    <input id="username" type="text" class="form-control" value="test" name="username" required>
+                    <input id="username" type="text" class="form-control"  name="username" required>
                 </div>  
 
                 <div class="mb-3">
                     <label for="digit_pin" class="form-label">4-Digit Pin <code>*</code></label>
-                    <input id="digit_pin" type="text" class="form-control" value="1234" min="4" max="4" name="digit_pin" required>
+                    <input id="digit_pin" type="text" class="form-control" min="4" max="4" name="digit_pin" required>
                 </div>  
 
                 <div class="mb-3">
                     <label for="tin" class="form-label">Tin</label>
-                    <input id="tin" type="text" class="form-control" value="123456" name="tin">
+                    <input id="tin" type="text" class="form-control"  name="tin">
                 </div>  
 
                 <div class="mb-3">
@@ -142,12 +142,7 @@
 
                 <div class="mb-3">
                     <label for="enrollment_kit" class="form-label">Please select your preferred enrollment kit ? <code>*</code></label>
-                    <select id="enrollment_kit" class="form-select" name="enrollment_kit" required>
-                        <option selected value="">Select</option>   
-                        <option value="Premium Experience Set with Dew Drop">Premium Experience Set with Dew Drop</option>
-                        <option value="Premium Experience Set with Dessert Mist">Premium Experience Set with Dessert Mist</option>
-                        <option value="Premium Experience Set with Sweet Aroma">Premium Experience Set with Sweet Aroma</option>
-                    </select>
+                    <input id="enrollment_kit" type="text" class="form-control"  name="enrollment_kit">
                 </div>  
 
                 <div class="mb-3">
@@ -166,7 +161,7 @@
 
                 <div class="mb-3">
                     <label for="valid_id" class="form-label">Copy of valid/government ID </label>
-                    <textarea class="form-control" rows="6" name="valid_id"></textarea>
+                    <input id="valid_id" type="file" class="form-control" name="valid_id[]" accept="image/*" >
                 </div>
 
 

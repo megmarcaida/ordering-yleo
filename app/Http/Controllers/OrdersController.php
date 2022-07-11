@@ -9,6 +9,7 @@ use App\Models\products;
 use App\Models\order_details;
 use App\Models\pickup_orders;
 use App\Models\pickup_order_details;
+use App\Models\enrollments;
 use Carbon\Carbon;
 use Auth;
 
@@ -207,9 +208,8 @@ class OrdersController extends Controller
 
     public function updateStatusPickup($id){
         $orders = pickup_orders::where("enabled",1)->where('id',$id)->first();
-        $orders->status = 0;
-        $orders->update();
-
+        $orders->delete();
+        
         return json_encode("Updated");
     }
 
