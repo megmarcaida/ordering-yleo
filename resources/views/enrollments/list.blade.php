@@ -20,6 +20,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                        <th scope="col">Queuebee No.</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Phone Number</th>
@@ -27,14 +28,13 @@
                                         <th scope="col">Sponsor</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Order Type</th>
-                                        <th scope="col">Queuebee No.</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($enrollments as $k => $value)
                                         <tr>
+                                            <td><a href="/complete-enrollment/{{  $value->queue_number }}/{{  $value->experience_center }}">{{  $value->queue_number }}</a></td>
                                             <td>{{  $value->firstname }} {{  $value->middlename }} {{  $value->lastname }}</td>
                                             <td>{{  $value->email }}</td>
                                             <td>{{  $value->phonenumber }}</td>
@@ -42,14 +42,12 @@
                                             <td>{{  $value->member_id_sponsor }}</td>
                                             <td>{{  $value->username }}</td>
                                             <td>{{  $value->order_type }}</td>
-                                            <td>{{  $value->queue_number }}</td>
                                             <td>@if( $value->enabled == 1)
                                                     <p class="text-success">Enabled</p>
                                                 @else
                                                     <p class="text-danger">Disabled</p>
                                                 @endif
                                             </td>
-                                            <td><a data-id="{{ $value->id }}" class="btn btn-danger btn-delete">DONE            </a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
