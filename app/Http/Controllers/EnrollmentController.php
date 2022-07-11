@@ -50,6 +50,7 @@ class EnrollmentController extends Controller
 
     public function enrollmentForm(Request $request){
         $message = "";
+        $filename = "";
         $date = Carbon::now();
         $provinces = address_locations::select('province')->groupby('province')->orderby('id')->get();
         if($request->post()){
