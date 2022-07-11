@@ -28,7 +28,6 @@
                                         <th scope="col">Sponsor</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Order Type</th>
-                                        <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,12 +41,6 @@
                                             <td>{{  $value->member_id_sponsor }}</td>
                                             <td>{{  $value->username }}</td>
                                             <td>{{  $value->order_type }}</td>
-                                            <td>@if( $value->enabled == 1)
-                                                    <p class="text-success">Enabled</p>
-                                                @else
-                                                    <p class="text-danger">Disabled</p>
-                                                @endif
-                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
