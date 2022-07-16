@@ -52,17 +52,17 @@
                 
                 <div class="mb-3">
                     <label for="province" class="form-label">Province </label>
-                    <input type="text" class="form-control" value="{{ $v->lastname }}" name="lastname" readonly>
+                    <input type="text" class="form-control" value="{{ $v->province }}" name="province" readonly>
                 </div>
 
                 <div class="mb-3">
                     <label for="city" class="form-label">City </label>
-                    <input type="text" class="form-control" value="{{ $v->lastname }}" name="lastname" readonly>
+                    <input type="text" class="form-control" value="{{ $v->city }}" name="city" readonly>
                 </div>
 
                 <div class="mb-3">
                     <label for="zipcode" class="form-label">Zip Code </label>
-                    <input type="text" class="form-control" value="{{ $v->lastname }}" name="lastname" readonly>
+                    <input type="text" class="form-control" value="{{ $v->zipcode }}" name="zipcode" readonly>
                 </div>
             </div>
             <div class="col">
